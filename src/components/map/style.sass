@@ -1,15 +1,45 @@
 .mapContainer 
-  width: 80%
+  width: 50%
   height: 100vh
+  position: absolute
+  right: 0px
 
-
-.infoWindow 
+.infoWindow
+  display: flex
+  flex-direction: column
+  align-items: center
   h2 
     font-size: 1.5rem
-    color: #333
-  
-
+    color: #fff
   p 
     font-size: 1rem
-    color: #666
-  
+    color: #fff
+    
+.info-cases
+  display: flex
+  align-items: center
+  svg
+     margin-right: 5px
+
+.info-deaths
+  display: flex
+  align-items: center
+  svg
+     margin-right: 5px
+
+.gm-style-iw 
+.gm-style-iw-c
+    background-color: #263c3f !important
+    color: #d59563
+    width: 200px
+    height: auto
+
+.gm-style-iw-d
+  overflow: hidden !important
+
+.gm-style-iw-tc::after
+  background-color: #263c3f !important
+
+.gm-ui-hover-effect
+  span 
+    background-color: #fff

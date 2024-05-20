@@ -1,5 +1,8 @@
-import { Marker, InfoWindow, APIProvider, Map } from '@vis.gl/react-google-maps';
+
 import React, { useEffect, useState } from 'react';
+import { GiDeathSkull } from "react-icons/gi";
+import { Marker, InfoWindow, APIProvider, Map } from '@vis.gl/react-google-maps';
+import { FaVirusCovid } from "react-icons/fa6";
 import './style.sass';
 
 //MAP CENTER - BRAZIL
@@ -43,6 +46,87 @@ const FullMap = () => {
         , 'TO': { lat: -10.25, lon: -48.25 }
     };
 
+    const nightModeMapStyles = [
+        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+        {
+          featureType: "administrative.locality",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#d59563" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#d59563" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "geometry",
+          stylers: [{ color: "#263c3f" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#6b9a76" }],
+        },
+        {
+          featureType: "road",
+          elementType: "geometry",
+          stylers: [{ color: "#38414e" }],
+        },
+        {
+          featureType: "road",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#212a37" }],
+        },
+        {
+          featureType: "road",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#9ca5b3" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry",
+          stylers: [{ color: "#746855" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry.stroke",
+          stylers: [{ color: "#1f2835" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#f3d19c" }],
+        },
+        {
+          featureType: "transit",
+          elementType: "geometry",
+          stylers: [{ color: "#2f3948" }],
+        },
+        {
+          featureType: "transit.station",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#d59563" }],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry",
+          stylers: [{ color: "#17263c" }],
+        },
+        {
+          featureType: "water",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#515c6d" }],
+        },
+        {
+          featureType: "water",
+          elementType: "labels.text.stroke",
+          stylers: [{ color: "#17263c" }],
+        },
+      ];
+
     //USEEFECT TO ADD LONGITUDE AND LATITUDE IN COVID 19 API JSON
     useEffect(() => {
         fetch('https://covid19-brazil-api.vercel.app/api/report/v1')
@@ -64,8 +148,9 @@ const FullMap = () => {
                 className='mapContainer'
                 zoom={4}
                 center={center}
+                styles={nightModeMapStyles} // Aplica o estilo escuro ao mapa
             >
-                
+
             /*ADD MARKING OF THE STATES OF BRAZIL*/
                 {covidData.map(state => (
 
@@ -76,7 +161,7 @@ const FullMap = () => {
                     />
                 ))
                 }
-                /*ADD INFORMATION BY CLICKING ON THE MAP MARKING*/ 
+                /*ADD INFORMATION BY CLICKING ON THE MAP MARKING*/
                 {selectedState && (
                     <InfoWindow
                         position={{ lat: selectedState.lat, lng: selectedState.lng }}
@@ -84,8 +169,14 @@ const FullMap = () => {
                     >
                         <div className='infoWindow'>
                             <h2>{selectedState.state}</h2>
-                            <p>Casos: {selectedState.cases}</p>
-                            <p>Mortes: {selectedState.deaths}</p>
+                            <div className='info-cases'>
+                                <FaVirusCovid />
+                                <p>Casos: {selectedState.cases}</p>
+                            </div>
+                            <div className='info-deaths'>
+                                <GiDeathSkull />
+                                <p>Mortes: {selectedState.deaths}</p>
+                            </div>
                         </div>
                     </InfoWindow>
                 )}
