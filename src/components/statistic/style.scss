@@ -1,0 +1,52 @@
+@mixin breakpoint($name) {
+    @if $name == “phone” {
+      @media (max-width: 320px) {
+        @content;
+      }
+    } @else if $name == “tablet” {
+      @media (max-width: 768px) {
+        @content;
+      }
+    } @else if $name == “desktop” {
+      @media (min-width: 1024px) {
+        @content;
+      }
+    } @else if $name == “monitor” {
+      @media (min-width: 1280px) {
+        @content;
+      }
+    }
+  }
+
+
+@import '~bootstrap/scss/bootstrap';
+
+.container-statistic{
+    
+    
+    background-color: #425b5e;
+    color: #d59563;
+    @include breakpoint(“phone”) {
+        width: 100%;
+      }
+      @include breakpoint(“tablet”) {
+        width: 100%;
+      }
+      @include breakpoint(“desktop”) {
+        overflow-y: scroll;
+        width: 40%;
+      }
+      @include breakpoint(“monitor”) {
+        overflow-y: scroll;
+        width: 40%;
+      }
+}
+
+
+th{
+    color: #d59563 !important;
+    svg{
+        margin-right: 10px;
+        font-size: 30px;
+    }
+}

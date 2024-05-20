@@ -37,12 +37,12 @@
     @include breakpoint(“desktop”) {
         height: 100vh;
         width: 10%;
-        position: absolute;
+        
     }
     @include breakpoint(“monitor”) {
         height: 100vh;
         width: 10%;
-        position: absolute;
+        
     }
     svg {
         margin-top: 10px;
