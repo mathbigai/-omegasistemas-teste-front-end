@@ -2,6 +2,7 @@ import { Marker, InfoWindow, APIProvider, Map } from '@vis.gl/react-google-maps'
 import React, { useEffect, useState } from 'react';
 import './style.sass';
 
+//MAP CENTER - BRAZIL
 const center = {
     lat: -14.235004,
     lng: -51.92528
@@ -11,6 +12,7 @@ const FullMap = () => {
     const [selectedState, setSelectedState] = useState(null);
     const [covidData, setCovidData] = useState([]);
 
+    //COORDINATES STATES OF BRAZIL
     const stateCoordinates = {
         'AC': { lat: -8.77, lon: -70.55 },
         'AL': { lat: -9.71, lon: -35.73 },
@@ -19,10 +21,10 @@ const FullMap = () => {
         'BA': { lat: -12.96, lon: -38.51 },
         'CE': { lat: -3.71, lon: -38.54 },
         'DF': { lat: -15.83, lon: -47.86 },
-        'ES': { lat: -19.19, lon: -40.34 }, 
-        'GO': { lat: -16.64, lon: -49.31 }, 
-        'MA': { lat: -2.55, lon: -44.30 }, 
-        'MT': { lat: -12.64, lon: -55.42 }, 
+        'ES': { lat: -19.19, lon: -40.34 },
+        'GO': { lat: -16.64, lon: -49.31 },
+        'MA': { lat: -2.55, lon: -44.30 },
+        'MT': { lat: -12.64, lon: -55.42 },
         'MS': { lat: -20.51, lon: -54.54 }
         , 'MG': { lat: -18.10, lon: -44.38 }
         , 'PA': { lat: -5.53, lon: -52.29 }
@@ -41,6 +43,7 @@ const FullMap = () => {
         , 'TO': { lat: -10.25, lon: -48.25 }
     };
 
+    //USEEFECT TO ADD LONGITUDE AND LATITUDE IN COVID 19 API JSON
     useEffect(() => {
         fetch('https://covid19-brazil-api.vercel.app/api/report/v1')
             .then(response => response.json())
@@ -62,7 +65,8 @@ const FullMap = () => {
                 zoom={4}
                 center={center}
             >
-                {console.log(covidData)}
+                
+            /*ADD MARKING OF THE STATES OF BRAZIL*/
                 {covidData.map(state => (
 
                     <Marker
@@ -72,10 +76,10 @@ const FullMap = () => {
                     />
                 ))
                 }
-
+                /*ADD INFORMATION BY CLICKING ON THE MAP MARKING*/ 
                 {selectedState && (
                     <InfoWindow
-                        position={{ lat: selectedState.latitude, lng: selectedState.longitude }}
+                        position={{ lat: selectedState.lat, lng: selectedState.lng }}
                         onCloseClick={() => setSelectedState(null)}
                     >
                         <div className='infoWindow'>
