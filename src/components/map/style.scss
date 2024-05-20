@@ -1,0 +1,91 @@
+@mixin breakpoint($name) {
+  @if $name == “phone” {
+   @media (max-width: 320px) {
+    @content;
+ }
+}
+  @else if $name == “tablet” { 
+    @media (max-width: 768px) { 
+     @content; 
+   } 
+  } 
+  @else if $name == “desktop” { 
+    @media (min-width: 1024px) { 
+     @content; 
+    } 
+  } 
+    @else if $name == “monitor” { 
+    @media (min-width: 1280px) { 
+     @content; 
+    } 
+  } 
+}
+  
+.mapContainer{
+  height: 100vh;
+  @include breakpoint(“phone”) { 
+    width: 100%;
+  }
+  @include breakpoint(“tablet”) { 
+    width: 100%; 
+    z-index: 90;
+  }
+  @include breakpoint(“desktop”) { 
+    width: 50%; 
+    position: absolute;
+  right: 0px;
+  }
+  @include breakpoint(“monitor”) { 
+    width: 50%; 
+    position: absolute;
+  right: 0px;
+  }
+}
+.infoWindow{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  p {
+    font-size: 1rem;
+    color: #fff;
+  }
+}
+.info-cases{
+  display: flex;
+  align-items: center;
+  svg{
+     margin-right: 5px;
+     font-size: 20px;
+  }
+}
+.info-deaths{
+  display: flex;
+  align-items: center;
+  svg{
+     margin-right: 5px;
+     font-size: 20px;
+  }
+}
+.gm-style-iw,
+.gm-style-iw-c{
+    background-color: #263c3f !important;
+    color: #d59563;
+    width: 200px;
+    height: auto;
+}
+.gm-style-iw-d{
+  overflow: hidden !important;
+}
+.gm-style-iw-tc::after{
+  background-color: #263c3f !important;
+}
+
+.gm-ui-hover-effect{
+  span {
+    background-color: #fff
+  }
+}

@@ -1,0 +1,67 @@
+@mixin breakpoint($name) {
+    @if $name == “phone” {
+        @media (max-width: 320px) {
+            @content;
+        }
+    } @else if $name == “tablet” {
+        @media (max-width: 768px) {
+            @content;
+        }
+    } @else if $name == “desktop” {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    } @else if $name == “monitor” {
+        @media (min-width: 1280px) {
+            @content;
+        }
+    }
+}
+
+.container-navbar {
+    
+
+    background-color: #263c3f;
+    color: #d59563;
+    box-shadow: 20px 20px 50px grey;
+    @include breakpoint(“phone”) {
+        width: 100%;
+        height: auto;
+        padding-bottom: 10px;
+    }
+    @include breakpoint(“tablet”) {
+        width: 100%;
+        height: auto;
+        padding-bottom: 10px;
+    }
+    @include breakpoint(“desktop”) {
+        height: 100vh;
+        width: 10%;
+        position: absolute;
+    }
+    @include breakpoint(“monitor”) {
+        height: 100vh;
+        width: 10%;
+        position: absolute;
+    }
+    svg {
+        margin-top: 10px;
+        font-size: 50px;
+    }
+
+    h1{
+        @include breakpoint(“phone”) {
+            font-size: 15px;
+        }
+        @include breakpoint(“tablet”) {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        @include breakpoint(“desktop”) {
+            font-size: 20px;
+        }
+        @include breakpoint(“monitor”) {
+            font-size: 25px;
+        }
+    }
+}

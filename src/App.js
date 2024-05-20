@@ -1,11 +1,13 @@
 
 import FullMap from './components/map';
-import './style.sass';
+import NavBar from './components/navbar';
+import './style.scss';
 function App() {
 
   return (
     <div className="App">
-     <FullMap />
+      <NavBar />
+      <FullMap />
     </div>
   );
 }

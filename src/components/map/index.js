@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GiDeathSkull } from "react-icons/gi";
 import { Marker, InfoWindow, APIProvider, Map } from '@vis.gl/react-google-maps';
 import { FaVirusCovid } from "react-icons/fa6";
-import './style.sass';
+import './style.scss';
 
 //MAP CENTER - BRAZIL
 const center = {
@@ -46,6 +46,7 @@ const FullMap = () => {
         , 'TO': { lat: -10.25, lon: -48.25 }
     };
 
+    //GOOGLE MAPS DARK STYLE
     const nightModeMapStyles = [
         { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
         { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -151,8 +152,8 @@ const FullMap = () => {
                 styles={nightModeMapStyles} // Aplica o estilo escuro ao mapa
             >
 
-            /*ADD MARKING OF THE STATES OF BRAZIL*/
-                {covidData.map(state => (
+           
+                {covidData.map(state => ( //ADD MARKING OF THE STATES OF BRAZIL
 
                     <Marker
                         key={state.uf}
@@ -161,8 +162,8 @@ const FullMap = () => {
                     />
                 ))
                 }
-                /*ADD INFORMATION BY CLICKING ON THE MAP MARKING*/
-                {selectedState && (
+                
+                {selectedState && ( //ADD INFORMATION BY CLICKING ON THE MAP MARKING
                     <InfoWindow
                         position={{ lat: selectedState.lat, lng: selectedState.lng }}
                         onCloseClick={() => setSelectedState(null)}
